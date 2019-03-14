@@ -1,0 +1,22 @@
+h1, h2 {
+  font-family: Lato;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+}
+.slider{
+  width: 100px;
+  height: 50px;
+  overflow: hidden;
+}
+.film{
+  margin-left: -300px;
+}
+.film div{
+  text-align: center;
+}
+.transition-e{
+  transition: width 0.5s ease-in;
+}
