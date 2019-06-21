@@ -4,7 +4,7 @@ const slideLeftBtn = document.querySelector('.slide-left');
 const slideRightBtn = document.querySelector('.slide-right');
 const width = 100;
 const height = 50;
-let state = {
+const state = {
   sliding: false
 };
 
