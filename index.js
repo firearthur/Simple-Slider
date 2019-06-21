@@ -1,10 +1,12 @@
-
 const slider = document.querySelector('.slider');
 const film = document.querySelector('.film');
 const slideLeftBtn = document.querySelector('.slide-left');
 const slideRightBtn = document.querySelector('.slide-right');
 const width = 100;
 const height = 50;
+let state = {
+  sliding: false
+};
 
 const imgs = [{src: '1', c:'red'},  {src: '2', c:'yellow'}, {src: '3', c:'green'}, {src: '4',c:'purple'},  {src: '5',c:'pink'}, {src: '6',c:'teal'}];
 
@@ -56,7 +58,8 @@ const slideLeft = () => {
     childToRemove.classList.remove('transition-e');
     childToRemove.remove();
     addImg(imgs[imgs.length - 1].src, imgs[imgs.length - 1].c)
-    
+    state.sliding = false;
+
     document.removeEventListener('transitionend', handler);
   };
 
@@ -84,6 +87,7 @@ const slideRight = () => {
     childToEnlarge.style.width = `${width}px`;
     childToRemove.remove();
     addImg(imgs[0].src, imgs[0].c, 'prepend');
+    state.sliding = false;
 
     document.removeEventListener('transitionend', handler);
   };
@@ -92,6 +96,13 @@ const slideRight = () => {
 
 
 };
-slideLeftBtn.addEventListener('click', slideLeft);
-slideRightBtn.addEventListener('click', slideRight);
 
+slideLeftBtn.addEventListener('click', (e) => {
+  !state.sliding && slideLeft(e);
+  state.sliding = true;
+});
+
+slideRightBtn.addEventListener('click', (e) => {
+  !state.sliding && slideRight(e);
+  state.sliding = true;
+});
